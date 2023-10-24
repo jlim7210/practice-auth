@@ -19,6 +19,9 @@ spring:
           google:
             client-id: 53851653672-c73eerjorhm6sst0a0r3julu7iuo3405.apps.googleusercontent.com
             client-secret: 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
+        provider:
+          custom-google:
+            issuer-uri: https://accounts.google.com #when this discovery endpoint is not found during a startup, our server won't start.
 #  data:
 #    redis:
 #      host: localhost
@@ -91,7 +94,10 @@ logging:
     ROOT: WARN
     org:
       springframework:
-        web: DEBUG
+        #web: DEBUG
+        web:
+          client:
+            RestTemplate: DEBUG
       hibernate:
         SQL: DEBUG
         type: DEBUG
@@ -110,3 +116,14 @@ spring:
     password: 1234
     url: jdbc:postgresql://localhost:5432/postgres
 
+logging:
+  level:
+    ROOT: WARN
+    org:
+      springframework:
+        web:
+          client:
+            RestTemplate: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type: DEBUG
