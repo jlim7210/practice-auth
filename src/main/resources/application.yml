@@ -1,0 +1,112 @@
+spring:
+  profiles:
+    active: mac
+  application:
+    name: authentication-service
+  datasource:
+    driver-class-name: org.postgresql.Driver # todo hide all later
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/webgame
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update #initialize behavior. create = drop and create, update = create if not exist
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 53851653672-c73eerjorhm6sst0a0r3julu7iuo3405.apps.googleusercontent.com
+            client-secret: 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
+#  data:
+#    redis:
+#      host: localhost
+#      port: 32773
+#      database: 0
+#      password: redispw #todo : hide it later
+
+jwt:
+  header:
+  secret:
+
+EMAIL_CODE_EXPIRE_TIME: 15 #minutes
+JWT_ACCESS_TOKEN_EXPIRE_TIME: 15 #minutes
+JWT_REFRESH_TOKEN_EXPIRE_TIME: 14 #days
+JWT_TOKEN: d2ViZ2FtZS1qd3Qtc2VjcmV0LWtleS10d2VudHktdHdlbnR5LXRocmVlLWphbnVhcnk= # todo hide it later
+
+server:
+  port: 8090
+
+joon:
+  config:
+    email:
+      password: Granethan17!
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka
+
+security:
+  basic:
+    enabled: true # todo test and have it in the common code?
+
+logging:
+  level:
+    ROOT: WARN
+    org:
+      springframework:
+        web: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  main:
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    enabled: false
+
+security:
+  basic:
+    enabled: true
+
+logging:
+  level:
+    ROOT: WARN
+    org:
+      springframework:
+        web: DEBUG
+      hibernate:
+        SQL: DEBUG
+        type: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: mac
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver # todo hide all later
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/postgres
+
