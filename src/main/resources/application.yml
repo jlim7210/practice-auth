@@ -19,9 +19,18 @@ spring:
           google:
             client-id: 53851653672-c73eerjorhm6sst0a0r3julu7iuo3405.apps.googleusercontent.com
             client-secret: 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
+            scope:
+              - email
+              - profile
         provider:
           custom-google:
             issuer-uri: https://accounts.google.com #when this discovery endpoint is not found during a startup, our server won't start.
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
+
+
 #  data:
 #    redis:
 #      host: localhost
