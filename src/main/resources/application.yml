@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: test
+    include: oauth
   application:
     name: authentication-service
   datasource:
@@ -12,21 +13,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update #initialize behavior. create = drop and create, update = create if not exist
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 53851653672-c73eerjorhm6sst0a0r3julu7iuo3405.apps.googleusercontent.com
-            client-secret: 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
-            redirect-uri: "http://localhost:8090/"
-            scope:
-              - openid
-              - email
-              - profile
-        provider:
-          custom-google:
-            issuer-uri: https://accounts.google.com #when this discovery endpoint is not found during a startup, our server won't start.
 #  data:
 #    redis:
 #      host: localhost
